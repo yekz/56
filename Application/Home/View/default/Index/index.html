@@ -1,0 +1,89 @@
+<extend name="Base/index_common"/>
+
+<block name="side">
+    <!-- 左侧 nav
+    ================================================== -->
+        <div class="span3">
+            <ul class="nav nav-list bs-docs-sidenav">
+                {:W('Category/lists', array($category['id'], ACTION_NAME == 'index'))}
+            </ul>
+        </div>
+</block>
+<block name="header">
+  <div class="row-fluid hidden-phone">
+    
+    <div id="myCarousel" class="carousel slide span7" style="top:20px; left:10px">
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" data-interval="2000" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1" data-interval="2000" class=""></li>
+                  <li data-target="#myCarousel" data-slide-to="2" data-interval="2000" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="__IMG__/3.png" alt="" style="height:200px;width:100%;">
+                    <div class="carousel-caption">
+                      <h4>56大学网正式上线</h4>
+                      <p>主要为在校大学生提供在线购物、二手信息发布、校园周边商铺入驻等服务。我们的目标是建立一个专业的校园综合性平台，为更多的在校大学生服务。</p>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="__IMG__/2.png" alt="" style="height:200px;width:100%;">
+                    <div class="carousel-caption">
+                      <h4></h4>
+                      <p>如果您所在大学还未开通，则可以申请开通您所在的大学并成为大学管理员负责所在大学的各项管理工作。</p>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="__IMG__/1.png" alt="" style="height:200px;width:100%;">
+                    <div class="carousel-caption">
+                      <h4>商家合作</h4>
+                      <p>如果您是校园周边商家，则可以申请开通您您商铺的购物频道。</p>
+                    </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    </div>
+    <div class="span2" style="position:relative; top:20px">
+      <img src="__IMG__/erwei.png">
+      <span class="label label-info" style="position:relative; left:px">扫一下，手机也能上56大学!</span>
+    </div>
+  </div>
+
+</block>
+
+<block name="body">
+    <div class="span12">
+        <!-- Contents
+        ================================================== -->
+        <section id="contents">
+        <ul class="thumbnails">
+            <volist name="lists" id="list">
+                <li class="span2" title="{$list.describe}">
+                    <div class="thumbnail" data-toggle="popover" data-title="商品简介" data-content="{$list.description}" data-trigger="hover focus" data-placement="top">
+                        <a target="_blank" href="{:U('Article/detail?id='.$list['id'])}"><img src="{$list.pic}" alt="{$list.title}" style="height:160px; width:170px"></a>
+                        <p class="mod_goods_price" style="width:170px">
+                            <span class="mod_price"><i class="icon-shopping-cart"></i> <i><span class="text-info">¥</span> </i><span class="text-success lead">{$list.price}</span><span class="text-error" style="position:relative;float:right;top:5px;">已售：{$list.sold}&nbsp;&nbsp;&nbsp;</span></span>
+                        </p>
+                        <p>
+                            <a target="_blank" href="{:U('Article/detail?id='.$list['id'])}" title="{$list.title}">{$list.title}</a>
+                        </p>
+                    </div>
+                </li>
+            </volist>
+        </ul>
+        <div class="onethink pagination pagination-right pagination-large">
+            {$page}
+        </div>
+        </section>
+    </div>
+        </div>
+        <script type="text/javascript">
+          $('.carousel').carousel();
+          $(".thumbnail").hover(function() {
+          }, function() {
+            /* Stuff to do when the mouse leaves the element */
+          });
+          $('.thumbnail').popover()
+        </script>
+</block>

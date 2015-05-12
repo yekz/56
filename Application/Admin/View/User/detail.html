@@ -1,0 +1,79 @@
+<extend name="Public/base" />
+<block name="body">
+<style>
+  table, th, td
+  {
+    border: 1px solid;
+  }
+  .info-table td {
+    width:150px;
+    height: 30px;
+    text-align: center;
+  }
+  .info {
+     color: green;
+  }
+</style>
+<table class="info-table">
+  <tr>
+    <td>UID</td>
+    <td><span class="info">{$info['uid']}</span></td>
+  </tr>
+  <tr>
+    <td>用户名</td>
+    <td><span class="info">{$info['username']}</span></td>
+  </tr>
+  <tr>
+    <td>学校</td>
+    <td><span class="info">{$info['sid']|getSchoolName}</span></td>
+  </tr>
+  <tr>
+    <td>邮箱</td>
+    <td><span class="info">{$info['email']}</span></td>
+  </tr>
+  <tr>
+    <td>手机</td>
+    <td><span class="info">{$info['mobile']}</span></td>
+  </tr>
+  <tr>
+    <td>姓名</td>
+    <td><span class="info">{$info['realname']}</span></td>
+  </tr>
+  <tr>
+    <td>地址</td>
+    <td><span class="info">{$info['address']}</span></td>
+  </tr>
+  <tr>
+    <td>注册时间</td>
+    <td><span class="info">{$info['reg_time']|date="y-m-d H:i:s",###}</span></td>
+  </tr>
+  <tr>
+    <td>注册IP</td>
+    <td><span class="info">{$info['reg_ip']}</span></td>
+  </tr>
+  <tr>
+    <td>最后登录时间</td>
+    <td><span class="info">{$info['last_login_time']|date="y-m-d H:i:s",###}</span></td>
+  </tr>
+  <tr>
+    <td>最后登陆IP</td>
+    <td><span class="info">{$info['last_login_ip']}</span></td>
+  </tr>
+  <tr>
+    <td>修改时间</td>
+    <td><span class="info">{$info['update_time']|date="y-m-d H:i:s",###}</span></td>
+  </tr>
+  <tr>
+    <td>状态</td>
+    <td><span class="info">{$info['status']|getUserStatusText}</span></td>
+  </tr>
+</table>
+</block>
+
+<block name="script">
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    //导航高亮
+    $('.side-sub-menu').find('a[href="{:U('User/Detail')}"]').closest('li').addClass('current');
+</script>
+</block>

@@ -1,0 +1,178 @@
+<extend name="Base/common"/>
+
+<block name="header">
+    <header class="jumbotron subhead" id="overview">
+        <div class="container">
+            <h2>购物车</h2>
+            <p class="lead"></p>
+        </div>
+    </header>
+</block>
+
+<block name="body">
+    <div class="span9">
+        <!-- Contents
+        ================================================== -->
+        <section id="contents">
+        <div class="alert alert-error fade in <eq name='schoolError' value='0'>hide</eq>">
+            <span id="error-msg">购物车中有不是您注册学校（{$schoolName}）销售的商品，请先移除！</span>
+        </div>
+        <div class="alert alert-error fade in <eq name='outOfStock' value='0'>hide</eq>">
+            <span id="error-msg">部分商品超出库存，可能因为其它用户已购买了该商品，请修改数量或移除商品！</span>
+        </div>
+        <eq name='empty' value="1">
+        <div class="alert alert-info">
+            <span id="error-msg">购物车是空的，先去 <a href="{:U('Index/index')}">挑选</a> 点商品把！</span>
+        </div>
+  <else/>
+        <table class="table table-striped">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>商品</th>
+              <th>数量</th>
+              <th>单价</th>
+              <th>总价</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+        	<volist name="list" id="data">
+                <tr>
+                  <td><a target="_blank" href="{:U('Article/detail?id='.$data['gid'])}" title="{$data.goodsName}"><span class="span3">{$data.goodsName}</span></a></td>
+                  <td>
+                  <form method="post" action="{:U('Cart/changeNumber')}">
+                    {$data.number}&nbsp;&nbsp;
+                    <eq name="data.secondhand" value="0">
+                    <select class="input-small" name="number">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    </select>
+                    <input type="hidden" name="gid" value="{$data.gid}">
+                    <input type="submit" class="btn btn-info" value="修改" style="position:relative; top:-5px">
+                    </eq>
+                    </form>
+                  </td>
+                  <td>{$data.price} 元</td>
+                  <td>{$data['price'] * $data['number']} 元</td>
+                  <th>
+
+                  <if condition="$data.status eq 2"><p class="text-error">超出库存</p>
+ <elseif condition="$data.status eq 1"/><p class="text-success">正常</p>
+ <else /><p class="text-error">学校错误</p>
+ </if>
+                  <td><a href="{:U('Cart/remove?gid='.$data['gid'])}" class="btn btn-error">移除</a></td>
+                </tr>
+	        </volist>
+          </tbody>
+        </table>
+        </eq>
+            <p class="text-right">订单总价：<span class="text-success lead">{$total}</span> 元</p>
+            <present name="Think.session.user_auth">
+            <p class="text-right">收货信息：<br/>
+            姓名 <span class="text-info" id="address-name">{$address.realname}</span><br/>
+            手机 <span class="text-info" id="address-phone">{$address.mobile}</span><br/>
+            地址 <span class="text-info" id="address-address">{$address.address}</span><br/>
+            <p class="text-error text-right">收货信息有误？ <a href="#myModal" role="button" class="btn" id="showAddressModal" data-toggle="modal">点此修改</a></p>
+            <else /> <p class="text-right">请先 <a href="{:U('User/login')}" class="btn btn-info">登录</a> 或 <a href="{:U('User/register')}" class="btn btn-info">注册</a></p></present></p>
+            <p class="text-right" id="submit-area"><a id="submitOrderform" href="{:U('Orderform/submit')}" class="btn btn-success" data-loading-text="提交中...">提交订单</a></p>
+        </section>
+    </div>
+    <!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">修改收货信息</h3>
+  </div>
+  <div class="modal-body" id="address-form-box-success"></div>
+  <div class="modal-body" id="address-form-box">
+    
+  <form class="form-horizontal" id="address-form">
+    <fieldset>
+
+    <div class="control-group">
+
+          <!-- Text input-->
+          <label class="control-label" for="input01">收货人姓名</label>
+          <div class="controls">
+            <input type="text" id="input-name" name="name" value="{$address.realname}" placeholder="请输入您的姓名" class="input-xlarge">
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+    <div class="control-group">
+
+          <!-- Text input-->
+          <label class="control-label" for="input01">收货人电话</label>
+          <div class="controls">
+            <input type="text" id="input-phone" name="phone" value="{$address.mobile}" placeholder="请输入您的手机号码" class="input-xlarge">
+            <p class="help-block"></p>
+          </div>
+        </div>
+
+    <div class="control-group">
+
+          <!-- Text input-->
+          <label class="control-label" for="input01">收货人地址</label>
+          <div class="controls">
+            <input type="text" id="input-address" name="address" value="{$address.address}" placeholder="请输入您的地址" class="input-xlarge">
+            <p class="help-block">如：四川理工学院汇北校区4-xxx</p>
+          </div>
+        </div>
+    </fieldset>
+  </form>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <button id="saveChange" class="btn btn-primary" data-loading-text="保存中...">保存</button>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#submitOrderform').click(function() {
+    $("#submitOrderform").button('loading');
+  });
+  $("#showAddressModal").click(function() {
+        $("#address-form-box-success").hide();
+        $("#address-form-box").show();
+        $("#saveChange").show();
+  });
+  $("#saveChange").click(function(){
+    $("#saveChange").button('loading');
+    $.post("{:U('user/address')}", $("#address-form").serialize(), success, "json");
+    return false;
+
+    function success(data){
+      $("#address-form-box-success").html(data.msg);
+      if(data.success){
+        $("#address-name").html($("input#input-name").val());
+        $("#address-phone").html($("input#input-phone").val());
+        $("#address-address").html($("input#input-address").val());
+      }
+      $("#address-form-box-success").show();
+      $("#address-form-box").hide();
+      $("#saveChange").hide();
+      $("#saveChange").button('reset');
+    }
+  });
+  <eq name='outOfStock' value="1">
+    $("#submit-area").html("<button class='btn btn-success' disabled='disabled'>提交订单</button>");
+  </eq >
+  <eq name='empty' value="1">
+    $("#submit-area").html("<button class='btn btn-success' disabled='disabled'>提交订单</button>");
+  </eq >
+  <eq name='schoolError' value="1">
+    $("#submit-area").html("<button class='btn btn-success' disabled='disabled'>提交订单</button>");
+  </eq >
+</script>
+</block>

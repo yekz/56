@@ -1,0 +1,140 @@
+<extend name="Base/common"/>
+
+<block name="header">
+    <header class="jumbotron subhead" id="overview">
+		<div class="container">
+			<h2>{$info.title}</h2>
+			<p>
+				<span  class="pull-left">
+					<span class="author">{$info.uid|get_username}</span>
+					<span> 发布于 {$info.create_time|date='Y-m-d H:i',###}</span>
+				</span>
+				<span class="pull-right">
+					<article:prev name="prev" info="info">
+                        <a href="{:U('?id='.$prev['id'])}">上一个</a>
+                    </article:prev>
+                    <article:next name="next" info="info">
+                        <a href="{:U('?id='.$next['id'])}">下一个</a>
+                    </article:next>
+				</span>
+			</p>
+		</div>
+	</header>
+</block>
+
+<block name="56tips">
+    <div class="alert alert-success alert-block"><span class="label label-info text-center">56 提示</span><br/>如果添加商品到购物车失败，可能是因为购物车中已有该商品。</div>
+</block>
+
+<block name="body">
+    <div class="span9 main-content">
+        <!-- Contents
+        ================================================== -->
+        <section id="contents">
+        	<div class="span9">
+        		<div class="alert alert-success fade in" id="addToCartSuccess" data-animation="2000">
+					<span id="success-msg"></span>
+        		</div>
+                <div class="alert alert-error fade in" id="addToCartError">
+                    <span id="error-msg"></span>
+                </div>
+        		<div class="span3">
+        			<img src="{$info.pic}" alt="{$info.title}" class="img-rounded">
+        		</div>
+        		<div class="span5">
+        			<p><eq name="info.secondhand" value="1">
+                    （二手）
+                    </eq> <span class="text-error lead">{$info.title}</span></p>
+        			<p>价格：<span class="text-success lead">¥ {$info.price}</span></p>
+                    <p>库存：<span class="text-info lead">{$info.stock}</span></p>
+                    <p>
+                    <form action="" id="goodsNumber">
+                    数量：
+                    <select class="input-small" name="number">
+                    <eq name="info.secondhand" value="1">
+                    <option>1</option>
+                    <else/>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    </eq>
+                    </select>
+                    </form></p>
+        			<a id="addToCart" href="javascript:void(0)" class="btn btn-info">加入购物车</a><br/>
+                    <br/>
+ <!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=301889" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+        		</div>
+  			</div>
+  			<div class="span9">
+  				<br/><br/>
+                <div class="alert alert-info">
+                    <span>商品简介</span>
+                </div>
+                {$info.description}
+                <br/><br/>
+                <div class="alert alert-info">
+                    <span>商品详情</span>
+                </div>
+        		{$info.content}
+  			</div>
+        </section>
+        <hr/>
+
+        {:hooks('documentDetailAfter')}
+
+    </div>
+
+<script type="text/javascript">
+$("#addToCartSuccess").hide();
+$("#addToCartError").hide();
+	$(document)
+    	.ajaxStart(function(){
+    		$("#addToCart").addClass("log-in").attr("disabled", true);
+    	})
+    	.ajaxStop(function(){
+    		$("#addToCart").removeClass("log-in").attr("disabled", false);
+    	});
+	$("#addToCart").click(function(){
+		$.post("{:U('Cart/add?gid='. $info['id'])}", $("#goodsNumber").serialize(), success, "json");
+		return false;
+
+		function success(data){
+            if (data.success) {
+                $("#success-msg").html(data.msg);
+                $("#addToCartSuccess").show();
+                $(function () {
+                    setTimeout(function () {$("#addToCartSuccess").hide();}, 2000);
+                })
+            } else {
+                $("#error-msg").html(data.msg);
+                $("#addToCartError").show();
+                $(function () {
+                    setTimeout(function () {$("#addToCartError").hide();}, 2000);
+                })
+            }
+		}
+	});
+</script>
+</block>

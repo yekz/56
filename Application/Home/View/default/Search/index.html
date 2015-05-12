@@ -1,0 +1,41 @@
+<extend name="Base/common"/>
+
+<block name="header">
+	<header class="jumbotron subhead" id="overview">
+		<div class="container">
+			<h2><span class="text-info">"{$keyword}"</span> 的搜索结果：<span class="text-error">{$error}</span></h2>
+			<p class="lead"></p>
+		</div>
+	</header>
+</block>
+<block name="side"></block>
+<block name="body">
+      <div class="span12">
+        <!-- Contents
+        ================================================== -->
+        <section id="contents">
+        <ul class="thumbnails">
+        	<volist name="lists" id="data">
+	        	<li class="span2" style="height:280px;">
+	        		<div class="thumbnail" data-toggle="popover" data-title="商品简介" data-content="{$list.description}" data-trigger="hover focus" data-placement="top">
+                        <a target="_blank" href="{:U('Article/detail?id='.$data['id'])}" title="{$data.describe}"><img src="{$data.pic}" alt="{$data.title}" style="height:160px; width:170px"></a>
+                        <p class="mod_goods_price" style="width:170px">
+                            <span class="mod_price"><i class="icon-shopping-cart"></i> <i><span class="text-info">¥</span> </i><span class="text-success lead">{$data.price}</span><span class="text-error" style="position:relative;float:right;top:5px;"><i class="icon-ok"></i> 已售：{$data.sold}&nbsp;&nbsp;&nbsp;</span></span>
+                        </p>
+                        <p>
+                            <a target="_blank" href="{:U('Article/detail?id='.$data['id'])}" title="{$data.title}">{$data.title}</a>
+                        </p>
+                    </div>
+	  			</li>
+			</volist>
+		</ul>
+            <div class="onethink pagination pagination-right pagination-large">
+                <article:page cate="$category['id']" listrow="$category['list_row']" />
+            </div>
+        </section>
+      </div>
+    </div>
+    <script type="text/javascript">
+        $('.thumbnail').popover()
+    </script>
+</block>

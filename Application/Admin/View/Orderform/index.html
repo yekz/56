@@ -1,0 +1,58 @@
+<extend name="Public/base"/>
+
+<block name="body">
+	<div class="main-title">
+		<h2>订单管理</h2>
+	</div>
+
+	<div class="cf">
+		<button class="btn ajax-post" target-form="ids" url="{:U("changestatus", array("status"=>1))}">待处理</button>
+		<button class="btn ajax-post" target-form="ids" url="{:U("changestatus", array("status"=>2))}">派 送</button>
+		<button class="btn ajax-post" target-form="ids" url="{:U("changestatus", array("status"=>3))}">完 成</button>
+		<button class="btn ajax-post" target-form="ids" url="{:U("changestatus", array("status"=>4))}">关 闭</button>
+	</div>
+
+	<div class="data-table table-striped">
+		<table>
+			<thead>
+				<tr>
+					<th class="row-selected">
+						<input class="checkbox check-all" type="checkbox">
+					</th>
+					<th>ID</th>
+					<th>编号</th>
+					<th>商品</th>
+					<th>金额</th>
+					<th>用户</th>
+					<th>收货信息</th>
+					<th>时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="list" id="data">
+					<tr>
+						<td><input class="ids row-selected" type="checkbox" name="ids[]" value="{$data.id}"></td>
+						<td>{$data.id}</td>
+						<td>{$data.number}</td>
+	                    <td>{$data.goodsList}</td>
+	                    <td>{$data.money} 元</td>
+	                    <td><a href="{:U('User/detail', array("id"=>$data['uid']))}">{$data.username}</a></td>
+	                    <td>{$data.address}</td>
+	                    <td>{$data.time}</td>
+						<td>
+							<a class="ajax-get" title="待处理" href="{:U('changestatus', array("status"=>1, "ids"=>$data['id']))}">待处理</a>
+							<a class="ajax-get" title="派送" href="{:U('changestatus', array("status"=>2, "ids"=>$data['id']))}">派送</a>
+							<a class="ajax-get" title="完成" href="{:U('changestatus', array("status"=>3, "ids"=>$data['id']))}">完成</a>
+							<a class="ajax-get" title="关闭" href="{:U('changestatus', array("status"=>4, "ids"=>$data['id']))}">关闭</a>
+						</td>
+					</tr>
+				</volist>
+			</tbody>
+		</table>
+		<!-- 分页 -->
+    <div class="page">
+        {$_page}
+    </div>
+	</div>
+</block>

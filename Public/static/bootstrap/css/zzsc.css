@@ -1,0 +1,138 @@
+/* css 重置 */* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+body {
+	background: #fff;
+	font: normal 12px/22px 宋体;
+}
+img {
+	border: 0;
+}
+a {
+	text-decoration: none;
+	color: #333;
+}
+a:hover {
+	color: #1974A1;
+}
+/* 本例子css */
+.qunar {
+	width: 728px;
+	margin: 0 auto 15px;
+	position: relative;
+	overflow: hidden;
+	padding-left: 2px;
+
+
+}
+.qunar .e_pic_wrap {
+	z-index: 1;
+	white-space: nowrap;
+	width: 728px;
+	height: 215px;
+}
+.qunar .e_pic_wrap li {
+	position: relative;
+	display: inline;
+	width: 728px;
+	height: 215px;
+	overflow: hidden;
+}
+.qunar .e_bg_flt {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 270px;
+	height: 215px;
+	background: #000;
+	filter: alpha(opacity=20);
+	-moz-opacity: .2;
+	opacity: .2;
+	z-index: 10;
+}
+.qunar .e_flt_inf {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 227px;
+	height: 180px;
+	padding: 25px 28px 10px 15px;
+	overflow: hidden;
+	z-index: 20;
+	color: #fff;
+	white-space: normal;
+	word-wrap: break-word;
+}
+.qunar .e_flt_inf h2 {
+	font: 18px/25px "微软雅黑";
+}
+.qunar .e_flt_inf h3 {
+	font: 16px/22px "微软雅黑";
+	margin-bottom: 22px;
+}
+.qunar .e_flt_inf h3 a, .qunar .e_flt_inf h2 a {
+	color: #fff;
+}
+.qunar .e_flt_inf .t_info {
+	line-height: 20px;
+	height: 84px;
+	overflow: hidden;
+}
+.qunar .e_flt_inf .t_info a {
+	color: #fff;
+}
+.qunar .e_flt_inf .t_info .l_view {
+	background: url(../img/ico_p1.png) no-repeat scroll -120px 0;
+	color: #fff;
+	width: 39px;
+	height: 14px;
+	line-height: 14px;
+	padding: 0 2px;
+	display: inline-block;
+}
+.qunar .e_sep {
+	color: #81d6d3;
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	width: 235px;
+	z-index: 20;
+}
+.qunar .e_sep a {
+	color: #81d6d3;
+}
+.e_prevnext .prev, .e_prevnext .next {
+	position: absolute;
+	z-index: 30;
+	display: block;
+}
+.e_prevnext .prev {
+	top: 93px;
+	left: 10px;
+}
+.e_prevnext .next {
+	top: 93px;
+	right: 10px;
+}
+.e_prevnext .prev a, .e_prevnext .next a {
+	display: block;
+	width: 25px;
+	height: 32px;
+	overflow: hidden;
+	background: url(../img/ico_prevnext.png) no-repeat scroll 0 0;
+	_background-image: url(../img/ico_prevnext_ie6.png);
+}
+.e_prevnext .prev a {
+	background-position: 0 0;
+}
+.e_prevnext .prev a:hover {
+	background-position: 0 -40px;
+}
+.e_prevnext .next a {
+	background-position: 0 -80px;
+}
+.e_prevnext .next a:hover {
+	background-position: 0 -120px;
+}

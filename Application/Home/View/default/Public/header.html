@@ -1,0 +1,85 @@
+<!-- 导航条
+================================================== -->
+<taglib name="Think,Article"/>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="{:U('index/index')}">56大学网</a>
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <think:nav name="nav">
+                        <li>
+                            <a href="{$nav.url|get_nav_url}">{$nav.title}</a>
+                        </li>
+                    </think:nav>
+                </ul>
+            </div>
+            <div class="nav-collapse collapse pull-right">
+
+  
+<ul class="nav" style="margin-right:0">
+<li>
+    <div class="btn-group">
+  <button class="btn"><if condition="is_login()">我在：</if>{$schoolName}</button>
+  <if condition="!is_login()">
+  <button class="btn dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <volist name="school" id="data">
+        <li><a href="{:U('Index/index?sid='.$data['id'])}">{$data.name}</a></li>
+ </volist>
+    
+  </ul>
+  </if>
+</div>
+</li>
+                <if condition="is_login()">
+                    
+                        <li>
+                            <a href="{:U('Cart/index')}"><i class="icon-shopping-cart"></i> 购物车</a>
+                        </li>
+                        <li>
+                            <a href="{:U('Orderform/index')}"><i class="icon-th-list"></i> 我的订单</a>
+                        </li>
+                        <li>
+                            <a href="{:U('/Admin/index')}" data-toggle="tooltip" data-placement="bottom" data-title="登陆我的网店后台，免费发布二手商品" id="myShow"><i class="icon-home" id="myShow"></i> 我的店铺</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left:0;padding-right:0"><i class="icon-user"></i> {:get_username()} <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{:U('User/profile')}"><i class="icon-asterisk"></i> 修改密码</a></li>
+                                <li><a href="{:U('User/logout')}"><i class="icon-off"></i> 退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                <else/>
+                        <li>
+                            <a href="{:U('Cart/index')}"><i class="icon-shopping-cart"></i> 购物车</a>
+                        </li>
+                        <li>
+                            <a href="{:U('Orderform/index')}"><i class="icon-th-list"></i> 我的订单</a>
+                        </li>
+                        <li>
+                            <a href="{:U('/Admin/index')}" data-toggle="tooltip"  data-title="登陆我的网店后台，免费发布二手商品" id="myShop"><i class="icon-home"></i> 我的店铺</a>
+                        </li>
+                        <li>
+                            <a href="{:U('User/login')}"><i class="icon-lock"></i> 登录</a>
+                        </li>
+                        <li>
+                            <a href="{:U('User/register')}" style="padding-left:0;padding-right:0"><i class="icon-plus"></i> 注册</a>
+                        </li>
+                    </ul>
+                </if>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#myShow').tooltip()
+</script>
