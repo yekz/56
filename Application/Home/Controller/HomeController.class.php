@@ -1,11 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
-// +----------------------------------------------------------------------
 
 namespace Home\Controller;
 use Think\Controller;
@@ -30,11 +23,11 @@ class HomeController extends Controller {
         if(!C('WEB_SITE_CLOSE')){
             $this->error('站点已经关闭，请稍后访问~');
         }
-        
+
         if (!session('?cart')) {
         	session("cart", array());
         } else {
-           
+
         }
 
         $school = D('Category')->getSchoolList();
@@ -49,7 +42,7 @@ class HomeController extends Controller {
         }
         $schoolName = M('Category')->where('id='.session("sid"))->getField("name");
         $this->assign('schoolName',$schoolName);
-        
+
     }
 
 	/* 用户登录检测 */

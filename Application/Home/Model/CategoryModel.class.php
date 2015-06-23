@@ -1,11 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
-// +----------------------------------------------------------------------
 
 namespace Home\Model;
 use Think\Model;
@@ -68,7 +61,7 @@ class CategoryModel extends Model{
 		$map  = array('status' => 1);
 		$list = $this->field($field)->where($map)->order('sort')->select();
 		$list = list_to_tree($list, $pk = 'id', $pid = 'pid', $child = '_', $root = $id);
-		
+
 		/* 获取返回数据 */
 		if(isset($info)){ //指定分类则返回当前分类极其子分类
 			$info['_'] = $list;
@@ -84,7 +77,7 @@ class CategoryModel extends Model{
 	 * @param  integer $id    分类ID
 	 * @param  boolean $field 查询字段
 	 * @return array
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>         
+	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
 	 */
 	public function getSameLevel($id, $field = true){
 		$info = $this->info($id, 'pid');

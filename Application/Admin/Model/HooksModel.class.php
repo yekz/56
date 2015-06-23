@@ -1,19 +1,10 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: yangweijie <yangweijiester@gmail.com> <code-tech.diandian.com>
-// +----------------------------------------------------------------------
 
 namespace Admin\Model;
 use Think\Model;
 
 /**
  * 插件模型
- * @author yangweijie <yangweijiester@gmail.com>
- * @date    2013-08-14 11:31:21
  */
 
 class HooksModel extends Model {

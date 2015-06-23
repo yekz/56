@@ -1,7 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | Author: 叶科忠 <yekz.qq.com> <http://www.yekezhong.com>
-// +----------------------------------------------------------------------
 
 namespace Home\Controller;
 use User\Api\UserApi as UserApi;

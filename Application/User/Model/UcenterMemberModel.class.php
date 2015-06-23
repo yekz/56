@@ -1,11 +1,5 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
-// +----------------------------------------------------------------------
+
 namespace User\Model;
 use Think\Model;
 use Home\Model\CartModel as CartModel;
@@ -270,7 +264,6 @@ class UcenterMemberModel extends Model{
 	 * @param string $password 密码，用来验证
 	 * @param array $data 修改的字段数组
 	 * @return true 修改成功，false 修改失败
-	 * @author huajie <banhuajie@163.com>
 	 */
 	public function updateUserFields($uid, $password, $data){
 		if(empty($uid) || empty($password) || empty($data)){
@@ -297,7 +290,6 @@ class UcenterMemberModel extends Model{
 	 * @param int $uid 用户id
 	 * @param array $data 修改的字段数组
 	 * @return true 修改成功，false 修改失败
-	 * @author huajie <banhuajie@163.com>
 	 */
 	public function updateUserAddress($uid, $data){
 		if(empty($uid) || empty($data)){
@@ -321,7 +313,6 @@ class UcenterMemberModel extends Model{
 	 * @param int $uid 用户id
 	 * @param string $password_in 密码
 	 * @return true 验证成功，false 验证失败
-	 * @author huajie <banhuajie@163.com>
 	 */
 	protected function verifyUser($uid, $password_in){
 		$password = $this->getFieldById($uid, 'password');

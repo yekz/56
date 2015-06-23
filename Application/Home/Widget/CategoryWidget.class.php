@@ -1,11 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
-// +----------------------------------------------------------------------
 
 namespace Home\Widget;
 use Think\Action;
@@ -16,7 +9,7 @@ use Think\Action;
  */
 
 class CategoryWidget extends Action{
-	
+
 	/* 显示指定分类的同级分类或子分类列表 */
 	public function lists($cate, $child = false){
 		$field = 'id,name,pid,title,link_id';
@@ -30,5 +23,5 @@ class CategoryWidget extends Action{
 		$this->assign('current', $cate);
 		$this->display('Category/lists');
 	}
-	
+
 }

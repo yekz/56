@@ -1,11 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
-// +----------------------------------------------------------------------
 
 namespace Home\Controller;
 
@@ -45,7 +38,7 @@ class ControlController extends HomeController {
 			/* 获取频道列表 */
 			$map  = array('status' => 1);
 			$list = D('Channel')->where($map)->select();
-	
+
 			$this->assign('list', $list);
 			$this->display();
 		}
@@ -93,5 +86,5 @@ class ControlController extends HomeController {
 			$this->assign('category', $cate);
 			$this->display();
 		}
-	} 
+	}
 }

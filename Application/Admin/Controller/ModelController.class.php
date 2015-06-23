@@ -1,11 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: huajie <banhuajie@163.com>
-// +----------------------------------------------------------------------
 
 namespace Admin\Controller;
 
@@ -21,7 +14,7 @@ class ModelController extends AdminController {
      * @author huajie <banhuajie@163.com>
      */
     static protected $nodes = array(
-        array( 
+        array(
             'title'     =>  '模型管理',
             'url'       =>  'Model/index',
             'group'     =>  '扩展',

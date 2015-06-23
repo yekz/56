@@ -1,11 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
-// +----------------------------------------------------------------------
 
 namespace Common\Model;
 use Think\Model;
@@ -37,7 +30,7 @@ class ConfigModel extends Model {
 	public function lists(){
 		$map    = array('status' => 1);
 		$data   = $this->where($map)->field('type,name,value')->select();
-		
+
 		$config = array();
 		if($data && is_array($data)){
 			foreach ($data as $value) {

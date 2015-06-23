@@ -46,8 +46,22 @@
                 </ul>
             </div>
             <div class="nav-collapse collapse pull-right">
-                <?php if(is_login()): ?><ul class="nav" style="margin-right:0">
-                        <li>
+
+  
+<ul class="nav" style="margin-right:0">
+<li>
+    <div class="btn-group">
+  <button class="btn"><?php if(is_login()): ?>我在：<?php endif; echo ($schoolName); ?></button>
+  <?php if(!is_login()): ?><button class="btn dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <?php if(is_array($school)): $i = 0; $__LIST__ = $school;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i;?><li><a href="<?php echo U('Index/index?sid='.$data['id']);?>"><?php echo ($data["name"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
+    
+  </ul><?php endif; ?>
+</div>
+</li>
+                <?php if(is_login()): ?><li>
                             <a href="<?php echo U('Cart/index');?>"><i class="icon-shopping-cart"></i> 购物车</a>
                         </li>
                         <li>
@@ -65,7 +79,6 @@
                         </li>
                     </ul>
                 <?php else: ?>
-                    <ul class="nav" style="margin-right:0">
                         <li>
                             <a href="<?php echo U('Cart/index');?>"><i class="icon-shopping-cart"></i> 购物车</a>
                         </li>
@@ -109,10 +122,8 @@
             <div class="span3 bs-docs-sidebar">
                 
                 <ul class="nav nav-list bs-docs-sidenav">
-                    <?php echo W('Category/lists', array($category['id'], ACTION_NAME == 'index'));?>
+                    <?php echo W('Category/lists', array($category['id'], ACTION_NAME != 'lists'));?>
                 </ul>
-                <br/>
-                
             </div>
         
         

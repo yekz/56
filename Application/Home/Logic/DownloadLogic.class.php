@@ -1,11 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
-// +----------------------------------------------------------------------
 
 namespace Home\Logic;
 
@@ -37,7 +30,7 @@ class DownloadLogic extends BaseLogic{
 			$this->error = '获取上传文件信息失败！';
 			return false;
 		}
-		
+
 		/* 添加或更新数据 */
 		if(empty($data['id'])){//新增数据
 			$data['id'] = $id;

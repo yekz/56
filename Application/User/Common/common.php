@@ -1,16 +1,9 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
-// +----------------------------------------------------------------------
 
 /**
  * 系统非常规MD5加密方法
  * @param  string $str 要加密的字符串
- * @return string 
+ * @return string
  */
 function think_ucenter_md5($str, $key = UC_AUTH_KEY){
 	return '' === $str ? '' : md5(sha1($str) . $key);
@@ -21,7 +14,7 @@ function think_ucenter_md5($str, $key = UC_AUTH_KEY){
  * @param string $data 要加密的字符串
  * @param string $key  加密密钥
  * @param int $expire  过期时间 (单位:秒)
- * @return string 
+ * @return string
  */
 function think_ucenter_encrypt($data, $key, $expire = 0) {
 	$key  = md5($key);
@@ -46,7 +39,7 @@ function think_ucenter_encrypt($data, $key, $expire = 0) {
  * 系统解密方法
  * @param string $data 要解密的字符串 （必须是think_encrypt方法加密的字符串）
  * @param string $key  加密密钥
- * @return string 
+ * @return string
  */
 function think_ucenter_decrypt($data, $key){
 	$key    = md5($key);

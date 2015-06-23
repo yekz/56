@@ -1,11 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
-// +----------------------------------------------------------------------
 
 namespace Home\Logic;
 use Think\Model;
@@ -24,7 +17,7 @@ class BaseLogic extends Model{
 	 */
 	public function __construct($name = '', $tablePrefix = '', $connection = '') {
 		/* 设置默认的表前缀 */
-		$this->tablePrefix = C('DB_PREFIX') . 'document_model_'; 
+		$this->tablePrefix = C('DB_PREFIX') . 'document_model_';
 		/* 执行构造方法 */
 		parent::__construct($name, $tablePrefix, $connection);
 	}
